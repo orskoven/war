@@ -1,4 +1,6 @@
-public class Card {
+import java.util.ArrayList;
+
+public class Card implements Comparable<Card>{
     private CardNames name;
     private int number;
     private static int cardInExistence;
@@ -22,12 +24,15 @@ public class Card {
         this.number = number;
     }
 
+
     @Override
     public String toString() {
-        return "Card{" +
-                "name='" + name + '\'' +
-                ", number=" + number +
-                '}';
+        return "" + name;
+    }
+
+    @Override
+    public int compareTo(Card opponentTopCard) {
+        return Integer.compare(opponentTopCard.getNumber(), this.getNumber());
     }
 }
 

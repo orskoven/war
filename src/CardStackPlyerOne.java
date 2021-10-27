@@ -4,17 +4,21 @@
 //
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
-public class CardStack implements ArrayWarStack {
+class CardStackPlayerOne implements ArrayWarStack {
+    static  Random random = new Random();
+    private String playerName;
     private static ArrayList<Hearts> heartsObjects = new ArrayList(13);
     private static ArrayList<Clubs> clubsObjects = new ArrayList(13);
     private static ArrayList<Diamonds> diamondsObjects = new ArrayList(13);
     private static ArrayList<Spades> spadesObjects = new ArrayList(13);
-    private static ArrayList<Card> cardObjects = new ArrayList(52);
+    private static ArrayList<Card> cardObjects = new ArrayList();
     private Card firstCard;
 
-    public CardStack() {
+    public CardStackPlayerOne(String playerName) {
+        this.playerName = playerName;
     }
 
     public ArrayList<Card> createStack() {
@@ -46,15 +50,20 @@ public class CardStack implements ArrayWarStack {
 
         }return cardObjects;
     }
+    public void enqueue (Card c){
+        cardObjects.set(cardObjects.size()-1,c);
+    }
 
     public void push(Card c) {
         cardObjects.add(c);
     }
 
-
+    public String getPlayerName() {
+        return playerName;
+    }
 
     public Card pop() {
-        return (Card)cardObjects.remove(cardObjects.size() - 1);
+        return cardObjects.remove(cardObjects.size()-1);
     }
 
     public Card getFirstCard() {
@@ -66,13 +75,13 @@ public class CardStack implements ArrayWarStack {
     }
 
     public Card top() {
-        return (Card)cardObjects.get(0);
+        return cardObjects.get(cardObjects.size()-1);
     }
+
 
     public int size() {
         return cardObjects.size();
     }
-
     public void display() {
         System.out.println(cardObjects.toString());
     }
@@ -80,11 +89,7 @@ public class CardStack implements ArrayWarStack {
     public String toString() {
         return "Stack{}";
     }
-    public ArrayList<Card> shuflle(){
-        Random random = new Random();
-        for (int i = 1; i < cardObjects.size() ; i++) {
-            int randomNumbers = random.nextInt(60);
-            cardObjects.set(randomNumbers,cardObjects.get(i));
-        } return cardObjects;
+    public void shuffles(){
+            Collections.shuffle(cardObjects);
     }
 }
