@@ -40,7 +40,7 @@ public class Game {
                 System.out.println(inputNamePlayerOne + " PLEASE TYPE A NUMBER 1-3");
                 int inputChoicePlayerOne = scanner.nextInt();
                 for (int i = 0; i < 3; i++) {
-                  warCardsPlayerOne.add(stackPlayerOne.pop());
+                    warCardsPlayerOne.add(stackPlayerOne.pop());
                 }
                 playerOneTopCard = warCardsPlayerOne.get(randomizer(inputChoicePlayerOne));
                 System.out.println(inputNamePlayerTwo + " PLEASE TYPE A NUMBER 1-3");
@@ -50,21 +50,11 @@ public class Game {
                 }
                 playerTwoTopCard = warCardsPlayerTwo.get(randomizer(inputChoicePlayerTwo));
                 cardCompare = playerOneTopCard.compareTo(playerTwoTopCard);
+                determineWinner(inputNamePlayerOne, inputNamePlayerTwo, stackPlayerOne, stackPlayerTwo,
+                        roundCounter, playerOneTopCard, playerTwoTopCard, cardCompare);
             }
-            if (cardCompare > 0) {
-                System.out.println("_________________________________________________\n");
-                System.out.println("\n" + inputNamePlayerTwo + " wins round nr. " + roundCounter);
-                System.out.println("_________________________________________________\n");
-                stackPlayerOne.pop();
-                stackPlayerTwo.enqueue(playerOneTopCard);
-            }
-            if (cardCompare < 0) {
-                System.out.println("_________________________________________________\n");
-                System.out.println("\n" + inputNamePlayerOne + " wins round nr. " + roundCounter);
-                System.out.println("_________________________________________________\n");
-                stackPlayerTwo.pop();
-                stackPlayerOne.enqueue(playerTwoTopCard);
-            }
+            determineWinner(inputNamePlayerOne, inputNamePlayerTwo, stackPlayerOne, stackPlayerTwo,
+                    roundCounter, playerOneTopCard, playerTwoTopCard, cardCompare);
             System.out.println(inputNamePlayerOne + "'s card stack is " + stackPlayerOne.size());
             System.out.println(inputNamePlayerTwo + "'s card stack is " + stackPlayerTwo.size());
             roundCounter++;
@@ -75,10 +65,29 @@ public class Game {
             System.out.println(inputNamePlayerTwo + " WINS THE GAME!");
         }
     }
-    static int randomizer(int bound){
-        return random.nextInt(bound);
-    }
+
+     static void determineWinner(String inputNamePlayerOne, String inputNamePlayerTwo, CardStackPlayerOne stackPlayerOne, CardStackPlayerTwo stackPlayerTwo, int roundCounter, Card playerOneTopCard, Card playerTwoTopCard, int cardCompare) {
+         if (cardCompare > 0) {
+             System.out.println("_________________________________________________\n");
+             System.out.println("\n" + inputNamePlayerTwo + " wins round nr. " + roundCounter);
+             System.out.println("_________________________________________________\n");
+             stackPlayerOne.pop();
+             stackPlayerTwo.enqueue(playerOneTopCard);
+         }
+         if (cardCompare < 0) {
+             System.out.println("_________________________________________________\n");
+             System.out.println("\n" + inputNamePlayerOne + " wins round nr. " + roundCounter);
+             System.out.println("_________________________________________________\n");
+             stackPlayerTwo.pop();
+             stackPlayerOne.enqueue(playerTwoTopCard);
+         }
+     }
 
 
-}
+         static int randomizer ( int bound){
+             return random.nextInt(bound);
+         }
+
+     }
+
 

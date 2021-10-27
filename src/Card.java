@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+
+// this class inherits methods from the Comparable interface
 public class Card implements Comparable<Card>{
     private CardNames name;
     private int number;
