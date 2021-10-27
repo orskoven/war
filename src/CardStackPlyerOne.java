@@ -86,6 +86,10 @@ class CardStackPlayerOne implements ArrayWarStack {
         System.out.println(cardObjects.toString());
     }
 
+    public String displayStackToSave() {
+        return cardObjects.toString();
+    }
+
     public String toString() {
         return "Stack{}";
     }

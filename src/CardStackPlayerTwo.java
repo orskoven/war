@@ -92,4 +92,8 @@ public class CardStackPlayerTwo implements ArrayWarStack {
     public void shuffles(){
         Collections.shuffle(cardObjects);
     }
+
+    public String displayStackToSave() {
+        return cardObjects.toString();
+    }
 }
